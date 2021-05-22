@@ -147,6 +147,10 @@ $secondary-color: #f06b00;
       text-transform: uppercase;
       cursor: pointer;
 
+      &.active{
+        border-bottom: 2px solid white
+      }
+
       &::after {
         display: block;
         content: "";
@@ -174,6 +178,13 @@ $secondary-color: #f06b00;
     .logo,
     .mobile-navbar-toggle {
       color: $theme-color !important;
+    }
+    .nav-item {
+      color: $theme-color;
+
+      &.active{
+        border-bottom: 2px solid $theme-color;
+      }
     }
   }
 }
@@ -312,6 +323,7 @@ $secondary-color: #f06b00;
 
 .quote-container {
   background-color: white;
+  background-image: url(./img/bg-1.jpg);
   margin-top: -176px;
   z-index: 9;
   position: relative;
@@ -333,16 +345,28 @@ $secondary-color: #f06b00;
       height: 5.5rem;
       width: 5.5rem;
       border-radius: 50%;
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
     }
 
     .quote-text {
       text-align: center;
       padding: 0.25rem 2rem 1rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: gray;
+      font-size: 1.1rem;
+      font-weight: 400;
       max-width: 1000px;
     }
+
+    .author {
+      font-size: 0.9rem;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      color: gray;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .quote-container {
+    margin-top: 1rem !important;
   }
 }
