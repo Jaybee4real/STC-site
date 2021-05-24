@@ -1,96 +1,88 @@
-import React, { useState, useEffect } from "react";
-import Swiper from "swiper";
-import SlideItem from "./SlideItem";
-import { Pagination, Navigation, Lazy, Controller } from "swiper/core";
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Pagination, Controller, Thumbs } from "swiper";
+import "swiper/swiper-bundle.css";
 
-const images = [
-  {
-    src: "https://picsum.photos/320/240?v1",
-  },
-  {
-    src: "https://picsum.photos/320/240?v2",
-  },
-  {
-    src: "https://picsum.photos/320/240?v3",
-  },
-  {
-    src: "https://picsum.photos/320/240?v4",
-  },
-];
+////
+import image1 from "../img/stc-image-1.jpeg";
+import image2 from "../img/stc-image-2.jpg";
+import image3 from "../img/stc-image-3.jpeg";
 
-const ManipulatingSwiper = () => {
-  // Swiper instance
-  const [swiper, updateSwiper] = useState(null);
-  // Swiper thumbsinstance
-  const [swiperThumbs, updateSwiperThumbs] = useState(null);
-  // Params definition
-  let params = {
-    modules: [Controller, Pagination, Navigation, Lazy],
-    preloadImages: false,
-    lazy: true,
-    pagination: {
-      el: ".swiper-pagination",
-      type: "bullets",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    loop: false,
-    spaceBetween: 30,
-    getSwiper: updateSwiper, // Get swiper instance callback
-  };
-  let thumbsParams = {
-    modules: [Controller],
-    slideToClickedSlide: true,
-    slidesPerView: "auto",
-    centeredSlides: true,
-    spaceBetween: 10,
-    getSwiper: updateSwiperThumbs, // Get swiper instance callback
-    style: {
-      width: "100px",
-    },
-  };
+SwiperCore.use([Navigation, Pagination, Controller, Thumbs]);
 
-  // Bind swiper and swiper thumbs
-  useEffect(() => {
-    if (swiper && swiperThumbs) {
-      swiper.controller.control = swiperThumbs;
-      swiperThumbs.controller.control = swiper;
-    }
-  }, [swiper, swiperThumbs]);
+function SliderSection() {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  // eslint-disable-next-line
+  const [controlledSwiper, setControlledSwiper] = useState(null);
+
+  const images = [image1, image2, image3];
+  const slides = [];
+  for (let i = 0; i < 3; i += 1) {
+    slides.push(
+      <SwiperSlide key={`slide-${i}`} tag="li">
+        <img className="top-img" src={images[i]} style={{ listStyle: "none" }} alt={`Slide ${i}`} />
+      </SwiperSlide>
+    );
+  }
+
+  const thumbs = [];
+  for (let i = 0; i < 3; i += 1) {
+    thumbs.push(
+      <SwiperSlide className="slide-2" key={`thumb-${i}`} tag="li" style={{ listStyle: "none" }}>
+        <img src={images[i]} alt={`Thumbnail ${i}`}></img>
+      </SwiperSlide>
+    );
+  }
 
   return (
-    <div>
-      <Swiper {...params}>
-        {images.map((image, idx) => (
-          <SlideItem key={`slide_${idx}`} style={{ width: "100px" }}>
-            <img
-              // @note w/o unique key the image won't be updated when the image set updates.
-              key={image.src}
-              className="swiper-lazy"
-              data-src={image.src}
-            />
-          </SlideItem>
-        ))}
-      </Swiper>
+    <>
+      <div  className="section-heading">Featured Product</div>
+      <div className="showcase-section">
+        <div className="showcase">
+          <Swiper id="main" thumbs={{ swiper: thumbsSwiper }} controller={{ control: controlledSwiper }} tag="section" wrapperTag="ul" navigation spaceBetween={0} slidesPerView={1}>
+            {slides}
+          </Swiper>
+          {/*  */}
+          <Swiper className="swiper-thumbs" id="thumbs" spaceBetween={5} slidesPerView={3} onSwiper={setThumbsSwiper}>
+            {thumbs}
+          </Swiper>
+        </div>
 
-      <Swiper {...thumbsParams}>
-        {images.map((image, idx) => (
-          <SlideItem key={`slide_${idx}`} className="swiper-slide-auto">
-            <img
-              // @note w/o unique key the image won't be updated when the image set updates.
-              key={image.src}
-              className="swiper-lazy"
-              // @note Ignore that the images aren't matching
-              src={image.src.replace("320/240", "100/100")}
-            />
-          </SlideItem>
-        ))}
-      </Swiper>
-    </div>
+        <div className="right-container">
+          <div className="subheading">Product Name</div>
+          <div className="text big">Superlife STC-30</div>
+          {/*  */}
+          <div className="subheading">Description</div>
+          <div className="text">
+            You are about to discover a Miracle Supplement used for treatment and cure of any medical conditions mentioned above and lots more. This supplement is known to be 300% effective than
+            normal conventional medications because of its therapeutic uses for any kind of diseases on earth. Various researches have proved its therapeutic properties in various ailments. People
+            administer it to treat a variety of Diseases
+          </div>
+          <div className="subheading" id="featured-product">Other Information</div>
+          <div className="sub-subheading">How to Administer</div>
+          <div className="text">
+            <ul>
+              <li>(Best Taken Before Breakfast)</li>
+              <li>Tear open the sachet gently.</li>
+              <li>Raise tongue to hit the roof of the mouth</li>
+              <li>Pour content of the sachet under tongue and allow to dissolve. Do not swallow</li>
+              <li>Drink lots of water</li>
+            </ul>
+          </div>
+
+          <div className="buttons-container">
+            <div className="btn">
+              <i className="fa fa-globe-africa"></i>Order Online
+            </div>
+            <span>Or</span>
+            <a href="tel:08023046401" className="btn green">
+              <i className="fa fa-phone-alt"></i>Call To Order
+            </a>
+          </div>
+        </div>
+      </div>
+    </>
   );
-};
+}
 
-export default ManipulatingSwiper;
+export default SliderSection;

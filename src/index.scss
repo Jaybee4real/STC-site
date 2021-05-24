@@ -10,8 +10,16 @@
 
 body::-webkit-scrollbar {
   width: 5px;
-  background-color: #e1eb5c;
   height: 0;
+}
+
+a {
+  text-decoration: none;
+  text-emphasis: unset;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 * {
@@ -22,8 +30,62 @@ body::-webkit-scrollbar {
   position: relative;
 }
 
-$theme-color: #bfca0e;
+$theme-color: #b1c943;
 $secondary-color: #f06b00;
+
+.btn {
+  padding: 0.5rem 1rem;
+  background-color: $secondary-color;
+  color: white;
+  text-align: center;
+  max-width: fit-content;
+  border-radius: 3px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+
+  i {
+    margin-right: 0.5rem;
+  }
+
+  &.green {
+    background-color: $theme-color;
+  }
+
+  &:hover {
+    opacity: 0.8;
+    box-shadow: 0px 0px 3px 4px #e5e5e5;
+  }
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+
+  &.big {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  span {
+    margin-top: 0.5rem;
+  }
+
+  .btn:first-of-type {
+    margin-right: 0.5rem;
+  }
+  .btn:last-of-type {
+    margin-left: 0.5rem;
+  }
+}
 
 .advertisement-bar {
   display: flex;
@@ -113,6 +175,47 @@ $secondary-color: #f06b00;
   }
 }
 
+.sidebar-container {
+  display: flex;
+  position: fixed;
+  transform: translateX(-110vw);
+  transition: all 0.4s ease;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 5rem 0.7rem;
+  min-width: 15rem;
+  background-color: white;
+  z-index: 10;
+  align-items: center;
+
+  .sidebar-logo {
+    height: 4rem;
+    width: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .store-name {
+    font-size: 1.4rem;
+    color: $theme-color;
+    text-transform: uppercase;
+    margin-bottom: 4rem;
+  }
+
+  .sidebar-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    font-size: 1.05rem;
+    background-color: #e5e5e5;
+    margin-bottom: 1rem;
+  }
+}
+
+.sidebar-open .sidebar-container {
+  transform: translateX(0) !important;
+}
+
 .navbar-container {
   display: flex;
   flex-direction: row;
@@ -124,6 +227,7 @@ $secondary-color: #f06b00;
   background-color: transparent;
   border-bottom: 0.5px solid #e5e5e585;
   transition: all 0.25s ease;
+  z-index: 3;
 
   .right-side {
     min-height: 100%;
@@ -147,8 +251,8 @@ $secondary-color: #f06b00;
       text-transform: uppercase;
       cursor: pointer;
 
-      &.active{
-        border-bottom: 2px solid white
+      &.active {
+        border-bottom: 2px solid white;
       }
 
       &::after {
@@ -182,7 +286,7 @@ $secondary-color: #f06b00;
     .nav-item {
       color: $theme-color;
 
-      &.active{
+      &.active {
         border-bottom: 2px solid $theme-color;
       }
     }
@@ -321,6 +425,36 @@ $secondary-color: #f06b00;
   padding: 7vw;
 }
 
+.section-subheading {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.section-sub-subheading {
+  font-size: 1.05rem;
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+  text-transform: none;
+  padding-bottom: 0.2rem;
+  max-width: fit-content;
+  color: $secondary-color;
+
+  &::before {
+    content: "*";
+    color: $secondary-color;
+    margin-right: 0.4rem;
+    position: relative;
+  }
+}
+
+.section-heading {
+  margin-bottom: 3.5rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 .quote-container {
   background-color: white;
   background-image: url(./img/bg-1.jpg);
@@ -368,5 +502,112 @@ $secondary-color: #f06b00;
 @media (max-width: 560px) {
   .quote-container {
     margin-top: 1rem !important;
+  }
+}
+
+//////Customizing Swiper Js Prev And Next Buttons////
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: $secondary-color;
+  height: 2.1rem !important;
+  width: 2.1rem !important;
+  border-radius: 50%;
+  font-size: 0.9rem;
+
+  &::after {
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+  }
+}
+
+.showcase-section {
+  display: flex;
+  flex-direction: row;
+
+  .showcase,
+  .showcase-thumbs {
+    max-width: 480px;
+
+    .top-img {
+      height: 400px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    // .swiper-slide-active{
+    //   border: 1px solid $theme-color;
+    // }
+
+    .slide-2 {
+      margin-top: 0.5rem;
+      img {
+        object-fit: cover !important;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  .right-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+
+    .subheading {
+      font-size: 1.1rem;
+      margin-bottom: 0.7rem;
+      font-weight: 500;
+      border-bottom: 2px solid $theme-color;
+      padding-bottom: 0.2rem;
+      max-width: fit-content;
+    }
+
+    .sub-subheading {
+      font-size: 0.9rem;
+      margin-bottom: 0.7rem;
+      font-weight: 500;
+      text-transform: none;
+      padding-bottom: 0.2rem;
+      max-width: fit-content;
+      color: $theme-color;
+
+      &::before {
+        content: "*";
+        color: $theme-color;
+        margin-right: 0.4rem;
+        position: relative;
+      }
+    }
+
+    ul {
+      margin-left: 1rem;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .showcase-section {
+    flex-direction: column-reverse;
+    .showcase {
+      max-width: 100%;
+    }
+  }
+}
+
+.faq-section {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+
+  .left-side,
+  .right-side {
+    width: 50%;
+    margin-top: 2.5rem;
+    margin-right: 1rem;
+
+    ul {
+      margin-left: 2rem;
+    }
   }
 }
