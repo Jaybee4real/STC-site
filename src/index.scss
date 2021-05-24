@@ -611,3 +611,24 @@ $secondary-color: #f06b00;
     }
   }
 }
+
+.footer {
+  background-color: #000000a4;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 760px) {
+  .faq-section {
+    flex-direction: column !important;
+
+    .right-side,
+    .left-side {
+      width: 100% !important;
+    }
+  }
+}

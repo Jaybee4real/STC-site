@@ -207,6 +207,11 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <div className="footer">
+        <span>JOCE Stores &copy; 2021</span>
+        <div className="watermark">Designed By Jaybee</div>
+      </div>
     </div>
   );
 }
