@@ -5,7 +5,7 @@ export default function MiniCard() {
     const [cardQuantity, setQuantity] = useState(0);
     return (
         <div className="sidebar-item-container">
-            <img src={require("../img/logo.png").default} alt="product image" />
+            <img src={require("../img/logo.png").default} alt="product_image" />
             <div className="right-side">
                 <div className="text bold">Superlife STC-30</div>
                 <div className="price">
@@ -15,21 +15,18 @@ export default function MiniCard() {
                     Quantity:
                     <div
                         className="decrease"
-                        // onClick={() => updateQuantity("decrease", this.props.id)}
+                        onChangeText={() => setQuantity(cardQuantity + 1)}
                     >
                         -
                     </div>
                     <input
                         type="number"
                         value={cardQuantity}
-                        // onChange={() => {
-                        //     updateQuantity();
-                        // }}
-                        // ref={(e) => (this.itemQuantityInput = e)}
                     ></input>
                     <div
                         className="increase"
                         // onClick={() => updateQuantity("increase", this.props.id)}
+                        onChangeText={() => setQuantity(cardQuantity + 1)}
                     >
                         +
                     </div>
