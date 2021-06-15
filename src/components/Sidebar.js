@@ -7,6 +7,7 @@ export default function Sidebar(props) {
         <div className={`sidebar-container ${props.sidebarActive ? "active" : " "}`}>
             <div className="logo" />
             <div className="sidebar-title">Cart</div>
+            <i className="fa fa-times sidebar-toggle" onClick={() => props.setSidebarActive(!props.sidebarActive)} />
             <MiniCard />
         </div>
     );

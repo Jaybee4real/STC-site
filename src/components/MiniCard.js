@@ -1,14 +1,15 @@
-import React from "react";
-import "../index.scss"
+import React, { useState } from "react";
+import "../index.scss";
 
 export default function MiniCard() {
+    const [cardQuantity, setQuantity] = useState(0);
     return (
         <div className="sidebar-item-container">
             <img src={require("../img/logo.png").default} alt="product image" />
             <div className="right-side">
                 <div className="text bold">Superlife STC-30</div>
                 <div className="price">
-                    Price:<span className="bold">#24.23</span>
+                    Price: <span className="text bold">#24.23</span>
                 </div>
                 <div className="quantity-container">
                     Quantity:
@@ -20,7 +21,7 @@ export default function MiniCard() {
                     </div>
                     <input
                         type="number"
-                        // value={state.quantity}
+                        value={cardQuantity}
                         // onChange={() => {
                         //     updateQuantity();
                         // }}
@@ -34,6 +35,7 @@ export default function MiniCard() {
                     </div>
                 </div>
             </div>
+            <i className="fa fa-trash" />
         </div>
     );
 }

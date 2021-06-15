@@ -34,6 +34,7 @@ html {
 
 .page-container {
     position: relative;
+    transition: all 0.4s ease;
     &.sidebar-open {
         transform: translateX(-20rem);
     }
@@ -208,7 +209,32 @@ $secondary-color: #f06b00;
             font-size: 1.5rem;
             color: white;
             cursor: pointer;
+            margin-top: -0.4rem;
+            font-weight: 300;
+            display: flex;
             display: none;
+
+            &:first-of-type {
+                margin-right: 0.5rem;
+                display: flex;
+            }
+
+            &[data-badge]::after {
+                content: attr(data-badge);
+                font-size: 0.9rem;
+                font-family: "Montserrat", sans-serif;
+                display: flex;
+                font-weight: 700;
+                align-items: center;
+                justify-content: center;
+                height: 1.5rem;
+                width: 1.5rem;
+                background-color: red;
+                border-radius: 50%;
+                position: relative;
+                top: -0.5rem;
+                right: 0.5rem;
+            }
         }
 
         .nav-item {
@@ -259,6 +285,47 @@ $secondary-color: #f06b00;
             }
         }
     }
+}
+
+.mobile-navbar-container {
+    display: flex;
+    position: fixed;
+    transform: translateX(-110vw);
+    transition: all 0.4s ease;
+    min-height: 100vh;
+    flex-direction: column;
+    padding: 5rem 0.7rem;
+    min-width: 15rem;
+    background-color: white;
+    z-index: 10;
+    align-items: center;
+
+    .mobile-navbar-logo {
+        height: 4rem;
+        width: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    .store-name {
+        font-size: 1.4rem;
+        color: $theme-color;
+        text-transform: uppercase;
+        margin-bottom: 4rem;
+    }
+
+    .mobile-navbar-item {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+        font-size: 1.05rem;
+        background-color: #e5e5e5;
+        margin-bottom: 1rem;
+    }
+}
+
+.mobile-navbar-open .mobile-navbar-container {
+    transform: translateX(0) !important;
 }
 
 .header-container {
@@ -488,6 +555,39 @@ $secondary-color: #f06b00;
     }
 }
 
+.products-slider {
+    .price {
+        height: 5rem;
+        width: 8rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-right: 1rem;
+        font-size: 1.4rem;
+        transform: rotate(-30deg);
+        color: white;
+        position: absolute;
+        top: 1rem;
+        right: 15%;
+        background-color: red;
+
+        &::after {
+            content: "";
+            position: absolute;
+            height: 0;
+            border: 2.5rem solid transparent;
+            transform: rotate(-90deg);
+            left: -5rem;
+            border-bottom-color: red;
+        }
+    }
+
+    .slide {
+        position: relative;
+    }
+}
+
 .showcase-section {
     display: flex;
     flex-direction: row;
@@ -504,7 +604,6 @@ $secondary-color: #f06b00;
 
         // .swiper-slide-active{
         //   border: 1px solid $theme-color;
-        // }
 
         .slide-2 {
             margin-top: 0.5rem;
@@ -630,6 +729,13 @@ $secondary-color: #f06b00;
     padding: 2rem 1rem;
     right: 0;
     flex-direction: column;
+    border-left: 1px solid grey;
+    transform: translateX(100vw);
+    transition: all 0.4s ease;
+
+    &.active {
+        transform: translateX(0) !important;
+    }
 
     .logo {
         height: 6rem;
@@ -645,6 +751,14 @@ $secondary-color: #f06b00;
         color: black;
         border-bottom: 1px solid black;
     }
+
+    .sidebar-toggle {
+        position: absolute;
+        right: 1rem;
+        top: 2rem;
+        color: $theme-color;
+        font-size: 1.5rem;
+    }
 }
 
 .sidebar-item-container {
@@ -652,10 +766,30 @@ $secondary-color: #f06b00;
     flex-direction: row;
     margin: 1rem 0;
     align-items: center;
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #e5e5e5e5;
+    padding: 1rem 0;
 
     img {
         height: 4rem;
         width: 3.5rem;
+        margin-top: -0.6rem;
+    }
+
+    i {
+        color: red;
+        border: 2px solid red;
+        padding: 0.3rem;
+        position: absolute;
+        right: 1rem;
+        cursor: pointer;
+        transition: all 0.25s ease;
+
+        &:hover {
+            background-color: red;
+            color: white;
+        }
     }
 
     .right-side {
@@ -684,10 +818,27 @@ $secondary-color: #f06b00;
         }
 
         .quantity-container {
-            margin: 0rem 0.5rem;
             display: flex;
             flex-direction: row;
             align-items: center;
+            margin-top: 0.25rem;
+
+            .increase,
+            .decrease {
+                padding: 0 0.6rem;
+                background-color: #f7f7f7;
+                color: #175a71;
+                font-size: 1.7rem;
+                border-radius: 2px;
+                border: 1px solid #e0e0e0;
+                cursor: pointer;
+                transition: 0.4s ease;
+
+                &:hover {
+                    background-color: #175a71;
+                    color: white;
+                }
+            }
             .increase {
                 padding: 0 0.2rem;
                 font-size: 1.3rem;
@@ -703,6 +854,22 @@ $secondary-color: #f06b00;
                 font-size: 1rem;
                 padding: 0;
                 height: 100%;
+                outline: none;
+                font-size: 1.2rem;
+                border: 1px solid #e0e0e0;
+                width: 30px;
+                margin-bottom: 0px;
+                border-style: solid;
+                border-width: 1px;
+                border-color: #e0e0e0;
+                text-align: center;
+
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+                -moz-appearance: textfield;
             }
         }
     }

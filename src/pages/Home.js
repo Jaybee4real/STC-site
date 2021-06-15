@@ -28,7 +28,8 @@ SwiperCore.use([Navigation, Pagination, Controller, Thumbs, Autoplay]);
 
 export default function Home() {
     ///Sidebar State
-    const [sidebarActive, setSidebarState] = useState(true);
+    const [sidebarActive, setSidebarActive] = useState(false);
+    const [mobileNavbarActive, setMobileNavbarActive] = useState(false);
     /////Slider for other products SliderSection
     const images = [
         { name: "Superlife Total Care 30", image: product1 },
@@ -39,7 +40,7 @@ export default function Home() {
     const OtherProductsSlides = [];
     for (let i = 0; i < 4; i += 1) {
         OtherProductsSlides.push(
-            <SwiperSlide key={`slide-${i}`}>
+            <SwiperSlide key={`slide slide-${i}`}>
                 <img
                     className="top-img"
                     src={images[i].image}
@@ -51,24 +52,39 @@ export default function Home() {
                     }}
                     alt={`Slide ${i}`}
                 />
+                <div className="price">
+                    $100 /
+                    <span>₦200</span>
+                </div>
                 <div
                     className="section-subheading"
-                    style={{ textAlign: "center", marginTop: "1rem" }}
+                    style={{ textAlign: "left", marginTop: "1rem" }}
                 >
                     {images[i].name}
                 </div>
+                {/* <div className="buy-btn">Buy Now</div> */}
             </SwiperSlide>
         );
     }
     return (
         <>
-            <Sidebar  sidebarActive={sidebarActive} />
-            <div className={`page-container ${sidebarActive && "sidebar-open"}`}>
-                <Navbar setSidebarState={setSidebarState} sidebarActive={sidebarActive} />
+            <Sidebar setSidebarActive={setSidebarActive} sidebarActive={sidebarActive} />
+            <div
+                className={`page-container ${sidebarActive && "sidebar-open"} ${
+                    mobileNavbarActive && "mobile-navbar-open"
+                }`}
+            >
+                <Navbar
+                    setSidebarActive={setSidebarActive}
+                    sidebarActive={sidebarActive}
+                    mobileNavbarActive={mobileNavbarActive}
+                    setMobileNavbarActive={setMobileNavbarActive}
+                    cartItems={[" ", " "]}
+                />
                 <div className="header-container">
                     <div className="left-side">
                         <h1 className="header-text">
-                            The Secret To Youth | Health | Longevity
+                            The Secret To Good Health And Longevity
                         </h1>
                         <h5 className="header-subtitle">
                             Order Now And Get Yours Shipped To You!
@@ -86,7 +102,7 @@ export default function Home() {
                         effect={"fade"}
                         slidesPerView={1}
                         autoplay={{
-                            delay: 3500,
+                            delay: 4500,
                             disableOnInteraction: false,
                         }}
                         className="quote-container"
@@ -143,7 +159,7 @@ export default function Home() {
                     <SliderSection />
                 </div>
 
-                <div className="section">
+                <div className="section products-slider">
                     <div className="section-heading">Other Products</div>
                     <Swiper
                         breakpoints={{
@@ -163,7 +179,7 @@ export default function Home() {
                         id="main"
                         navigation
                         autoplay={{
-                            delay: 2000,
+                            delay: 6000,
                             disableOnInteraction: false,
                         }}
                     >
