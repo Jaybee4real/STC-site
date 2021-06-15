@@ -52,6 +52,8 @@ function SliderSection() {
           <div className="subheading">Product Name</div>
           <div className="text big">Superlife STC-30</div>
           {/*  */}
+          <div className="subheading">Price</div>
+        <div className="text"></div>
           <div className="subheading">Description</div>
           <div className="text">
             You are about to discover a Miracle Supplement used for treatment and cure of any medical conditions mentioned above and lots more. This supplement is known to be 300% effective than
@@ -72,7 +74,7 @@ function SliderSection() {
 
           <div className="buttons-container">
             <div className="btn">
-              <i className="fa fa-globe-africa"></i>Order Online
+              <i className="fa fa-cart-plus"></i>Order Online 
             </div>
             <span>Or</span>
             <a href="tel:08023046401" className="btn green">

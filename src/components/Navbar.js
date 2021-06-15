@@ -2,23 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../index.scss";
 
-import logo from "../img/logo.png";
 
 export default function Navbar(props) {
   return (
     <>
-      <div className="sidebar-container">
-        <img src={logo} className="sidebar-logo" alt="logo" />
-        <div className="store-name">Joce Stores</div>
-
-        <div className="sidebar-item">
-          Home <i className="fa fa-chevron-right"></i>
-        </div>
-        <div className="sidebar-item">
-          Cart <i className="fa fa-chevron-right"></i>
-        </div>
-      </div>
-      {/* Sidebar End */}
       <div className="advertisement-bar">
         <div className="left">
           <span className="advert-text">Get 30% Discounts!</span>
